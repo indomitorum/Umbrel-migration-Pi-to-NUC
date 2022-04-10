@@ -1,6 +1,4 @@
-# Umbrel-migration-Pi-to-NUC
-Umbrel migration from Raspberry Pi to NUC / Laptop running Linux
-Umbrel migration from Raspberry Pi to NUC / Laptop running Linux
+# Umbrel Migration from Raspberry Pi to NUC / Laptop running Linux
 
 I chose Debian OS as it’s meant to be better for running a node keeping the file system in better order. In case of drive failure, Debian is superior at recovering bad blocks and repairing them but you can use Ubuntu if you prefer or even Mint.
 
@@ -22,15 +20,15 @@ Migration Process
 Raspberry Pi
 
 1.	ssh in to the R Pi
-2.	I recommend uninstalling all apps as when I tested the migration with apps, I run into problems. If you want to keep for example LNDg database so you don’t lose anything, before deleting it, 
-a.	stop LNDg (GUI or ~/umbrel/scripts/app stop lndg)
-b.	Copy the database from ~/umbrel/app-data/lndg/db.sqlite3 to ~/umbrel
+2.	I recommend uninstalling all apps as when I tested the migration with apps, I run into problems. If you want to keep for example LNDg database so you don’t lose  anything, before deleting it, 
+  a.	stop LNDg (GUI or ~/umbrel/scripts/app stop lndg)
+  b.	Copy the database from ~/umbrel/app-data/lndg/db.sqlite3 to ~/umbrel
 3.	Uninstall all apps
 4.	Sudo scripts/stop 
 5.	Ensuring the channel.db file integrity is crucial so you don’t end up penalised starting the new node with an old / corrupted channel.db which would be a disaster.
-a.	cd umbrel/lnd/data/graph/mainnet
-b.	sha256sum channel.db > checksum
-c.	now let’s check its ok first with sha256sum –c checksum. Output should be: OK . it can take a while if your channel.db is big.
+  a.	cd umbrel/lnd/data/graph/mainnet
+  b.	sha256sum channel.db > checksum
+  c.	now let’s check its ok first with sha256sum –c checksum. Output should be: OK . it can take a while if your channel.db is big.
 6.	sudo systemctl stop umbrel-startup
 7.	Check everything is down: docker ps or docker-compose ps from ~/umbrel
 8.	Check bitcoin (debug.log) and lnd (lnd.log) logs for shutdown complete
@@ -40,15 +38,15 @@ Linux machine – NUC / Gigabyte / Laptop
 
 1.	~/umbrel/scripts/stop
 2.	Connect Raspberry Pi SSD and mount it in a directory of your choice in the new machine. 
-a.	Example: Run the lsblk command to see the SSD (unmounted for now)
-b.	Create a directory to act as a mount point. sudo mkdir /media/mymountpoint
-c.	Mount it : sudo mount /dev/(whatever the drive is called from lsblk - for example /dev/sdb1) /media/mymountpoint
-d.	lsblk will show it as mounted now
+  a.	Example: Run the lsblk command to see the SSD (unmounted for now)
+  b.	Create a directory to act as a mount point. sudo mkdir /media/mymountpoint
+  c.	Mount it : sudo mount /dev/(whatever the drive is called from lsblk - for example /dev/sdb1) /media/mymountpoint
+  d.	lsblk will show it as mounted now
 
 3.	Copy the whole Raspberry Pi ~/umbrel directory to the new machine
-a.	Rsync –azhP /media/mymountpoint/umbrel/  ~/umbrel 
-b.	DO NOT forget the trailing slash on the source so that rsync does not create the source folder on the destination and only copies the directory’s files
-c.	This will take a while as it copies everything including the blockchain (2-3 hrs is not unheard of)
+  a.	Rsync –azhP /media/mymountpoint/umbrel/  ~/umbrel 
+  b.	DO NOT forget the trailing slash on the source so that rsync does not create the source folder on the destination and only copies the directory’s files
+  c.	This will take a while as it copies everything including the blockchain (2-3 hrs is not unheard of)
 4.	Once its finished copying the ~/umbrel directory drom pi to new machine, check the channel.db integrity. From the channel.db directory (where channel.db is) in the new machine run sha256sum –c checksum. Output should be : OK. If it isn’t, DO NOT start the new machine as you can lose funds.
 5.	Backup your lnd.conf for example lnd.conf_bak as we will reconfigure and delete it. 
 6.	From ~/umbrel, run: sudo rm –rf lnd/tls* && rm –f lnd/lnd.conf && sudo scripts/configure
@@ -69,6 +67,7 @@ A service unit needs to be created so umbrel starts otherwise if you restart fro
 
 1.	Set a new service unit as follows 
 2.	Sudo nano /etc/system/system/umbrel.service
+
 [Unit]
 Description=umbrel.service
 After=network.target
