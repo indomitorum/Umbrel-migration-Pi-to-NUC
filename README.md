@@ -64,7 +64,7 @@ Installation of Linux and Umbrel in new machine
 A service unit needs to be created so umbrel starts otherwise if you restart from GUI, Umbrel will not restart automatically in your new Linux machine
 
 - Set a new service unit as follows 
-- Sudo nano /etc/system/system/umbrel.service
+- Sudo nano /etc/systemd/system/umbrel.service
 
 [Unit]  
 Description=umbrel.service  
