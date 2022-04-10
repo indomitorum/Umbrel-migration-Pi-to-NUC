@@ -38,22 +38,17 @@ Linux machine – NUC / Gigabyte / Laptop
 
 1.	~/umbrel/scripts/stop
 2.	Connect Raspberry Pi SSD and mount it in a directory of your choice in the new machine.
- 
-  a.	Example: Run the lsblk command to see the SSD (unmounted for now)
-  b.	Create a directory to act as a mount point. sudo mkdir /media/mymountpoint
-  c.	Mount it : sudo mount /dev/(whatever the drive is called from lsblk - for example /dev/sdb1) /media/mymountpoint
-  d.	lsblk will show it as mounted now
-
-3.	Copy the whole Raspberry Pi ~/umbrel directory to the new machine
+3.	Create a directory to act as a mount point. sudo mkdir /media/mymountpoint. https://linuxize.com/post/how-to-mount-and-unmount-file-systems-in-linux/
+4.	Copy the whole Raspberry Pi ~/umbrel directory to the new machine
   a.	Rsync –azhP /media/mymountpoint/umbrel/  ~/umbrel 
   b.	DO NOT forget the trailing slash on the source so that rsync does not create the source folder on the destination and only copies the directory’s files
   c.	This will take a while as it copies everything including the blockchain (2-3 hrs is not unheard of)
-4.	Once its finished copying the ~/umbrel directory drom pi to new machine, check the channel.db integrity. From the channel.db directory (where channel.db is) in the new machine run sha256sum –c checksum. Output should be : OK. If it isn’t, DO NOT start the new machine as you can lose funds.
-5.	Backup your lnd.conf for example lnd.conf_bak as we will reconfigure and delete it. 
-6.	From ~/umbrel, run: sudo rm –rf lnd/tls* && rm –f lnd/lnd.conf && sudo scripts/configure
-7.	sudo reboot 
-8.	Add the old lnd.conf lines to the new one carefully one by one.
-9.	~/umbrel/scripts/start
+5. Once its finished copying the ~/umbrel directory drom pi to new machine, check the channel.db integrity. From the channel.db directory (where channel.db is) in the new machine run sha256sum –c checksum. Output should be : OK. If it isn’t, DO NOT start the new machine as you can lose funds.
+6.	Backup your lnd.conf for example lnd.conf_bak as we will reconfigure and delete it. 
+7.	From ~/umbrel, run: sudo rm –rf lnd/tls* && rm –f lnd/lnd.conf && sudo scripts/configure
+8.	sudo reboot 
+9.	Add the old lnd.conf lines to the new one carefully one by one.
+10.	~/umbrel/scripts/start
 
 Optional
 
