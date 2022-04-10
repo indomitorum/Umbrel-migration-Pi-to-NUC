@@ -44,7 +44,7 @@ Installation of Linux and Umbrel in new machine
 - DO NOT forget the trailing slash on the source so that rsync does not create the source folder on the destination and only copies the directory’s files
     This will take a while as it copies everything including the blockchain (2-3 hrs is not unheard of). 
 - Double check where the source umbrel directory is with the files as sometimes it is ~/umbrel/umbrel/
-5. Once its finished copying the ~/umbrel directory drom Pi to new machine, check the channel.db integrity. 
+5. Once its finished copying the ~/umbrel directory drom Pi to new machine, check the channel.db integrity: 
 - From the channel.db directory (where channel.db is) in the new machine run sha256sum –c checksum. Output should be : OK. If it isn’t, DO NOT start the new machine as you can lose funds.
 6.	Backup your lnd.conf for example lnd.conf_bak as we will reconfigure and delete it. 
 7.	From ~/umbrel, run: sudo rm –rf lnd/tls* && rm –f lnd/lnd.conf && sudo scripts/configure
@@ -63,8 +63,8 @@ Installation of Linux and Umbrel in new machine
 
 A service unit needs to be created so umbrel starts otherwise if you restart from GUI, Umbrel will not restart automatically in your new Linux machine
 
-1.	Set a new service unit as follows 
-2.	Sudo nano /etc/system/system/umbrel.service
+- Set a new service unit as follows 
+- Sudo nano /etc/system/system/umbrel.service
 
 [Unit]  
 Description=umbrel.service  
