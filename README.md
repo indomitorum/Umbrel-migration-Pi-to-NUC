@@ -84,9 +84,8 @@ ExecStop=path-to-umbrel-scripts/stop
 [Install]  
 WantedBy=multi-user.target
 
-
-3.	Start service : systemctl start umbrel.service
-4.	Add it to start (init): systemctl enable.service
+- Start service : systemctl start umbrel.service
+- Add it to start (init): systemctl enable.service
 
 If you run into problems, issues, DM me on Telegram : indomitorum (indomitus).
 
