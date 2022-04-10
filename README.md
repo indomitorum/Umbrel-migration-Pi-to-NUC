@@ -46,7 +46,7 @@ c.	Mount it : sudo mount /dev/(whatever the drive is called from lsblk - for exa
 d.	lsblk will show it as mounted now
 
 3.	Copy the whole Raspberry Pi ~/umbrel directory to the new machine
-a.	Rsync –azhP /media/path-to-your-~/umbrel/  ~/umbrel 
+a.	Rsync –azhP /media/mymountpoint/umbrel/  ~/umbrel 
 b.	DO NOT forget the trailing slash on the source so that rsync does not create the source folder on the destination and only copies the directory’s files
 c.	This will take a while as it copies everything including the blockchain (2-3 hrs is not unheard of)
 4.	Once its finished copying the ~/umbrel directory drom pi to new machine, check the channel.db integrity. From the channel.db directory (where channel.db is) in the new machine run sha256sum –c checksum. Output should be : OK. If it isn’t, DO NOT start the new machine as you can lose funds.
@@ -94,6 +94,8 @@ WantedBy=multi-user.target
 If you run into problems, issues, DM me on Telegram : indomitorum (indomitus).
 
 IndomitusBTC ⚡
+
+indomitus@zbd.gg
 
 
 
