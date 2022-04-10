@@ -37,7 +37,8 @@ Raspberry Pi
 Linux machine – NUC / Gigabyte / Laptop
 
 1.	~/umbrel/scripts/stop
-2.	Connect Raspberry Pi SSD and mount it in a directory of your choice in the new machine. 
+2.	Connect Raspberry Pi SSD and mount it in a directory of your choice in the new machine.
+ 
   a.	Example: Run the lsblk command to see the SSD (unmounted for now)
   b.	Create a directory to act as a mount point. sudo mkdir /media/mymountpoint
   c.	Mount it : sudo mount /dev/(whatever the drive is called from lsblk - for example /dev/sdb1) /media/mymountpoint
