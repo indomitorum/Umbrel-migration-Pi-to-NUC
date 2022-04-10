@@ -66,23 +66,23 @@ A service unit needs to be created so umbrel starts otherwise if you restart fro
 1.	Set a new service unit as follows 
 2.	Sudo nano /etc/system/system/umbrel.service
 
-[Unit]
-- Description=umbrel.service
-- After=network.target
-- Wants=network.target
-- StartLimitIntervalSec=0
+[Unit]  
+Description=umbrel.service  
+After=network.target  
+Wants=network.target  
+StartLimitIntervalSec=0
 
-[Service]
-- Type=forking
-- Restart=always
-- RemainAfterExit=yes
-- RestartSec=1
-- User=root
-- ExecStart=path-to-umbrel-scripts/start
-- ExecStop=path-to-umbrel-scripts/stop
+[Service]  
+Type=forking  
+Restart=always  
+RemainAfterExit=yes  
+RestartSec=1  
+User=root  
+ExecStart=path-to-umbrel-scripts/start  
+ExecStop=path-to-umbrel-scripts/stop
 
-[Install]
-- WantedBy=multi-user.target
+[Install]  
+WantedBy=multi-user.target
 
 
 3.	Start service : systemctl start umbrel.service
