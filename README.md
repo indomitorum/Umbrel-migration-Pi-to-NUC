@@ -91,7 +91,11 @@ If you run into problems, issues, DM me on Telegram : indomitorum (indomitus).
 
 IndomitusBTC ⚡
 
-indomitus@zbd.gg
+indomitorum@ln.tips
+
+Twitter: @indomitorum
+
+
 
 
 
